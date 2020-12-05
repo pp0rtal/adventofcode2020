@@ -6,7 +6,7 @@ export async function readFileEntries(
 ): Promise<string[]> {
     const fileContent = await fs.readFile(filePath, 'utf8');
 
-    return fileContent.split(separator);
+    return fileContent.split(separator).filter((line) => line.length > 0);
 }
 
 export async function parseNumbers(

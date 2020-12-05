@@ -1,5 +1,6 @@
 require('source-map-support').install();
 
-import star01complementaries from './star01complementaries';
+import day01complementaries from './day01complementaries';
+import day02validateString from './day02validateString';
 
-star01complementaries().catch(console.error);
+day02validateString().catch(console.error);

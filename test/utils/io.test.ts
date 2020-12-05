@@ -25,13 +25,13 @@ describe('Utils - IO', () => {
     });
 
     describe('#readFileEntries', () => {
-        it('should read file and return each lines by default', async () => {
+        it('should read file and return each non-empty lines by default', async () => {
             const input = 'line1\n' + 'line2\n' + '\n' + 'line4\n' + '';
             await fs.writeFile(tmpFile, input);
 
             const lines = await ioUtils.readFileEntries(tmpFile);
 
-            expect(lines).to.deep.equal(['line1', 'line2', '', 'line4', '']);
+            expect(lines).to.deep.equal(['line1', 'line2', 'line4']);
         });
 
         it('should return each values separated by a space char', async () => {
@@ -40,7 +40,7 @@ describe('Utils - IO', () => {
 
             const lines = await ioUtils.readFileEntries(tmpFile, ' ');
 
-            expect(lines).to.deep.equal(['val1', 'val2', '', 'val3']);
+            expect(lines).to.deep.equal(['val1', 'val2', 'val3']);
         });
 
         it('should throw a FS error if the file does not exists', async () => {
@@ -61,7 +61,7 @@ describe('Utils - IO', () => {
         });
 
         it('should omit invalid numbers', async () => {
-            const inputs = ['text', 'NaN', '', '-', '\n'];
+            const inputs = ['text', 'NaN', '-', '\n'];
 
             const lines = await ioUtils.parseNumbers(inputs, ' ');
 

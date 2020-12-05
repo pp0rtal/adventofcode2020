@@ -3,7 +3,7 @@ import { parseNumbers, readFileEntries } from './utils/io';
 type IndexedNumbers = { [key: number]: number };
 
 export default async function star01main() {
-    const exerciseRawInput = await readFileEntries('./inputs/star01.txt');
+    const exerciseRawInput = await readFileEntries('./inputs/day01.txt');
     const numbers = await parseNumbers(exerciseRawInput);
     const indexedNumbers = indexNumbers(numbers);
 

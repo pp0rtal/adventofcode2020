@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import * as star01 from '../src/star01complementaries';
+import * as star01 from '../src/day01complementaries';
 
 describe('Star 1/2 - complementaries', () => {
     describe('#indexNumbers', () => {
