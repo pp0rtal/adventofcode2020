@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import * as star01 from '../src/day01complementaries';
 
-describe('Star 1/2 - complementaries', () => {
+describe('Day 1: Report Repair', () => {
     describe('#indexNumbers', () => {
         it('should create a hashmap of numbers with their occurrence', () => {
             const numbers = [1721, 979, 366, 299, 675, 1456, 1456, 1456];

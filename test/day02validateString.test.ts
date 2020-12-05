@@ -8,7 +8,7 @@ import {
     parsePasswordConfiguration,
 } from '../src/day02validateString';
 
-describe('Star 1/2 - complementaries', () => {
+describe('Day 2: Password Philosophy', () => {
     describe('#isLineValidForUniqueOffset', () => {
         it('should return true for a line having min chars', () => {
             expect(isLineValidForRange('1-3 a: abcde')).to.be.true;
