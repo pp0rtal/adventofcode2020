@@ -3,10 +3,16 @@ import { promises as fs } from 'fs';
 export async function readFileEntries(
     filePath: string,
     separator = '\n',
+    dropEmptyLines: boolean = false,
 ): Promise<string[]> {
     const fileContent = await fs.readFile(filePath, 'utf8');
+    const splittedContent = fileContent.split(separator);
 
-    return fileContent.split(separator).filter((line) => line.length > 0);
+    if (!dropEmptyLines) {
+        return splittedContent;
+    }
+
+    return splittedContent.filter((line) => line.length > 0);
 }
 
 export async function parseNumbers(

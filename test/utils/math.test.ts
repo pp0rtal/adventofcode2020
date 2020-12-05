@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
 
-import {multiplyNumbers} from "../../src/utils/math";
+import { multiplyNumbers } from '../../src/utils/math';
 
 chai.use(chaiAsPromised);
 const { expect } = chai;

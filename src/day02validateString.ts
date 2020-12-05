@@ -7,7 +7,7 @@ type ValidationInputs = {
     searchedChar: string;
 };
 
-export default async function star01main() {
+export default async function main() {
     const exerciseRawInput = await readFileEntries('./inputs/day02.txt');
 
     // Star 3

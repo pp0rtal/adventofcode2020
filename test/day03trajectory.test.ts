@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import {browseMap} from "../src/day03trajectory";
+import { browseMap } from '../src/day03trajectory';
 
 describe('Day 3: Toboggan Trajectory', () => {
     describe('#browseMap', () => {
