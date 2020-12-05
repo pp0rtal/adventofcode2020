@@ -6,6 +6,7 @@ import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
 
 import * as ioUtils from '../../src/utils/io';
+import { compactLines } from '../../src/utils/io';
 
 chai.use(chaiAsPromised);
 const { expect } = chai;
@@ -32,6 +33,15 @@ describe('Utils - IO', () => {
             const lines = await ioUtils.readFileEntries(tmpFile);
 
             expect(lines).to.deep.equal(['line1', 'line2', 'line4']);
+        });
+
+        it('should read file and return empty lines', async () => {
+            const input = 'line1\n' + 'line2\n' + '\n' + 'line4\n' + '';
+            await fs.writeFile(tmpFile, input);
+
+            const lines = await ioUtils.readFileEntries(tmpFile, '\n', false);
+
+            expect(lines).to.deep.equal(['line1', 'line2', '', 'line4', '']);
         });
 
         it('should return each values separated by a space char', async () => {
@@ -66,6 +76,23 @@ describe('Utils - IO', () => {
             const lines = await ioUtils.parseNumbers(inputs, ' ');
 
             expect(lines).to.deep.equal([]);
+        });
+    });
+
+    describe('#compactLines', () => {
+        it('should drop empty lines', () => {
+            const input = ['content1', '', 'content2', '', ''];
+
+            expect(compactLines(input)).to.deep.equal(['content1', 'content2']);
+        });
+
+        it('should concatenate two consecutive non-empty lines', () => {
+            const input = ['', 'content1', 'addition', '', 'content2'];
+
+            expect(compactLines(input)).to.deep.equal([
+                'content1 addition',
+                'content2',
+            ]);
         });
     });
 });
