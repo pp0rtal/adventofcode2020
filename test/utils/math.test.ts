@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
 
-import { multiplyNumbers } from '../../src/utils/math';
+import { multiplyNumbers, sum } from '../../src/utils/math';
 
 chai.use(chaiAsPromised);
 const { expect } = chai;
@@ -22,6 +22,13 @@ describe('Utils - Math', () => {
 
         it('should return multiplication of all numbers', async () => {
             expect(multiplyNumbers([2, 7, 3, 4, 2])).to.equal(336);
+        });
+    });
+
+    describe('#sum', () => {
+        it('should sum up numbers', () => {
+            expect(sum()).to.equal(0);
+            expect(sum(1, 4)).to.equal(5);
         });
     });
 });

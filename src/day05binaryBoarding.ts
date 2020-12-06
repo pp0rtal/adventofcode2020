@@ -16,6 +16,13 @@ export default async function main() {
 
     // Star 10
     const missingId = findMissingId(seatIds);
+    console.log(
+        seatIds
+            .sort(function (a, b) {
+                return b - a;
+            })
+            .join(' '),
+    );
     console.log(`Missing Id: ${missingId}`);
 }
 
@@ -55,7 +62,7 @@ export function decodeSeatPosition(encodedPosition: string): SeatPosition {
 }
 
 export function findMissingId(seatIds: number[]): number {
-    const orderedIds = seatIds.sort();
+    const orderedIds = seatIds.sort((a, b) => a - b);
     let previous = orderedIds[0];
 
     for (let i = 1; i < orderedIds.length; i++) {

@@ -5,5 +5,6 @@ import day02validateString from './day02validateString';
 import day03trajectory from './day03trajectory';
 import day04passportProcessing from './day04passportProcessing';
 import day05binaryBoarding from './day05binaryBoarding';
+import day06customCustoms from './day06customCustoms';
 
-day05binaryBoarding().catch(console.error);
+day06customCustoms().catch(console.error);

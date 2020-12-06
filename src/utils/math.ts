@@ -5,3 +5,7 @@ export function multiplyNumbers(numbers: number[]): number {
 
     return numbers.reduce((total, number) => total * number, 1);
 }
+
+export function sum(...numbers: number[]): number {
+    return numbers.reduce((total, number) => total + number, 0);
+}
