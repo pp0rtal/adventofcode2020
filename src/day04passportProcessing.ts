@@ -1,6 +1,8 @@
 import * as yup from 'yup';
 import { compactLines, readFileEntries } from './utils/io';
 
+type PassportField = { [key: string]: string };
+
 // byr iyr eyr hgt hcl ecl pid cid
 const MANDATORY_FIELDS = [
     'byr',
@@ -32,11 +34,11 @@ const validationSchema = yup.object().shape({
     // hgt
     hgt: yup
         .string()
-        .matches(/^#[0-9]+((cm)|(cn))$/, 'i')
+        .matches(/^[0-9]+((cm)|(in))$/, '')
         .required(),
     hcl: yup
         .string()
-        .matches(/^#[0-9a-f]$/, 'i')
+        .matches(/^#[0-9a-f]{6}$/, '')
         .required(),
     ecl: yup
         .string()
@@ -44,7 +46,7 @@ const validationSchema = yup.object().shape({
         .required(),
     pid: yup
         .string()
-        .matches(/^[0-9]{9}$/, 'i')
+        .matches(/^[0-9]{9}$/, '')
         .required(),
     cid: yup.string().optional(),
 });
@@ -80,7 +82,7 @@ export function countTotalValidPassport(passport: string[], validate: boolean) {
 }
 
 export function isPassportValid(infos: string, validate: boolean) {
-    let fieldsValues: { [key: string]: string } = {};
+    let fieldsValues: PassportField = {};
     fieldsValues = infos.split(' ').reduce((fields, fieldWithValue) => {
         const [fieldKey, value] = fieldWithValue.split(':');
         fields[fieldKey] = value;
@@ -96,6 +98,30 @@ export function isPassportValid(infos: string, validate: boolean) {
         }
         return true;
     }
+
+    return validateFields(fieldsValues);
 }
 
-export function validateFields() {}
+export function validateFields(passport: PassportField) {
+    // Validate most of fields
+    try {
+        validationSchema.validateSync(passport);
+    } catch (err) {
+        return false;
+    }
+
+    // Check hgt size
+    const hgt = passport.hgt;
+    const hgtField = /(\d+)(\w+)/.exec(hgt);
+    if (!hgtField) {
+        return false;
+    }
+
+    const hgtValue = parseInt(hgtField[1], 10);
+    const hgtKey = hgtField[2];
+
+    return (
+        (hgtKey === 'cm' && hgtValue >= 150 && hgtValue <= 193) ||
+        (hgtKey === 'in' && hgtValue >= 59 && hgtValue <= 76)
+    );
+}
