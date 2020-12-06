@@ -1,5 +1,4 @@
-import * as yup from 'yup';
-import { compactLines, readFileEntries } from './utils/io';
+import { readFileEntries } from './utils/io';
 
 type SeatPosition = {
     row: number;

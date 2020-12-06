@@ -1,11 +1,9 @@
 import { expect } from 'chai';
 
-import * as star01 from '../src/day01complementaries';
 import {
     countValidLines,
     isLineValidForRange,
     isLineValidForUniqueOffset,
-    parsePasswordConfiguration,
 } from '../src/day02validateString';
 
 describe('Day 2: Password Philosophy', () => {

@@ -1,12 +1,5 @@
 import { expect } from 'chai';
 
-import { browseMap } from '../src/day03trajectory';
-import {
-    countTotalValidPassport,
-    isPassportValid,
-    validateFields,
-} from '../src/day04passportProcessing';
-import { compactLines } from '../src/utils/io';
 import {
     decodeSeatPosition,
     findMissingId,

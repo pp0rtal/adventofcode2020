@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 
-import { browseMap } from '../src/day03trajectory';
 import {
     countTotalValidPassport,
     isPassportValid,
